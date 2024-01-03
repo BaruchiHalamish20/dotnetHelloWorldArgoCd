@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: bhalamish20/dotnethellowworld:1.0
+        image: {{ .Values.deployment.image }}
         ports:
         - containerPort: 80
 ---

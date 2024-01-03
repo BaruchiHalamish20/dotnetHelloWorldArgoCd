@@ -26,6 +26,27 @@ ArgoCD:
 	# webbrowser to https://localhost:8099/login?return_url=https%3A%2F%2Flocalhost%3A8099%2Fapplications
 	# $ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d; echo
 	# mkex7EtmNaSvZXAp
+	# Load to github: 
+	#    https://github.com/BaruchiHalamish20/dotnetHelloWorldArgoCd.git
+	#     /c/sela/20487D/dotnet/HelloWorld (master)
+	# NOT GOOD:
+	#  argocd app create dotnetHelloWorldArgoCd --repo https://github.com/BaruchiHalamish20/dotnetHelloWorldArgoCd --path hello-world --dest-server https://kubernetes.default.svc --dest-namespace default
+	# time="2024-01-02T23:58:39+02:00" level=fatal msg="rpc error: code = InvalidArgument desc = application spec for dotnetHelloWorldArgoCd is invalid: InvalidSpecError: Unable to generate manifests in hello-world: rpc error: code = Unknown desc = `helm template . --name-template dotnetHelloWorldArgoCd --namespace default --kube-version 1.25 <api versions removed> --include-crds` failed exit status 1: Error: release name \"dotnetHelloWorldArgoCd\": invalid release name, must match regex ^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$ and the length must not be longer than 53"
+
+	#  argocd app create dotnet-hw --repo https://github.com/BaruchiHalamish20/dotnetHelloWorldArgoCd --path hello-world --dest-server https://kubernetes.default.svc --dest-namespace default
+	# application 'dotnet-hw' created
+	# kubectl port-forward svc/hello-world-service -n default 8102:80
+
+
+argocd-st-dev:
+	#k create namespace st dev
+	# structure is:
+	# repository-root/
+	 #├── hello-world/
+	 #│   ├── Chart.yaml
+	 #│   ├── templates/
+	 #│   ├── values-dev.yaml    # Dev-specific values
+	 #│   └── values-st.yaml     # ST-specific values
 
 ArgoCdDemo:
 	# kubectl config set-context --current --namespace=argocd
