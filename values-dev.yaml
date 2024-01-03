@@ -1,0 +1,2 @@
+deployment:
+  image: bhalamish20/dotnethellowworld:2.0
